@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Body Mass Index (BMI) Calculator</title>
+	<style type="text/css">
+		body {
+			background-color: #f0f0f0;
+			font-family: Arial, sans-serif;
+			padding: 50px;
+		}
+</head>
+<body>
+	<h1>Body Mass Index (BMI) Calculator</h1>
+	<form onsubmit="calculateBMI(); return false;">
+		<input type="number" id="height" placeholder="Height (cm)" required>
+		<input type="number" id="weight" placeholder="Weight (kg)" required>
+		<button type="submit">Calculate BMI</button>
+	</form>
+	<div id="result" class="result"></div>
+	<script type="text/javascript">
+		function calculateBMI() {
+			var height = document.getElementById('height').value;
+			var weight = document.getElementById('weight').value;
+			var bmi = weight / ((height/100) * (height/100));
+			var result = '';
+			if (isNaN(bmi)) {
+				result = 'Please enter valid values for height and weight.';
+			} else {
+				result = 'Your BMI is: ' + bmi.toFixed(2) + ' - ';
+				if (bmi < 18.5) {
+					result += 'Underweight';
+				} else if (bmi >= 18.5 && bmi < 24.9) {
+					result += 'Normal weight';
+				} else if (bmi >= 25 && bmi < 29.9) {
+					result += 'Overweight';
+				} else {
+					result += 'Obese';
+				}
+			}
+			document.getElementById('result').innerHTML = result;
+		}
+	</script>
+</body>
+</html>
